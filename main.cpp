@@ -1,4 +1,4 @@
-//Eric Bordelon,Group 3			 Team Members: Nicholas Mahony, Quintin Donnelly
+//Sorry about this being so short-notice, guys.
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,7 +6,6 @@
 #include <mutex>
 #include <algorithm>
 #include <functional>
-#include <string>
 
 using namespace std;
 
@@ -16,7 +15,10 @@ using namespace std;
 int swapCounter;
 mutex countLock;
 
+//sort a segment of vector using insertion sort.
 void insSort(vector<int>::iterator lhs, vector<int>::iterator rhs);
+
+//merge two sorted subarrays together. Assumes that they are "right next to" each other in memory.
 void srtMerge(vector<int>::iterator lhs, vector<int>::iterator mid, vector<int>::iterator rhs);
 
 int main()
@@ -28,12 +30,8 @@ int main()
 
 	cout << "This program sorts a file of integers using multiple threads." << endl;
 
-	string dest;
-	cout << ">  ";
-	cin >> dest;
-
 	ifstream fin;
-	fin.open(dest);
+	fin.open("data.in");
 	
 	fin >> input;
 	while (fin)
@@ -96,8 +94,7 @@ int main()
 	cout << "  The number of swaps used is: " << swapCounter << endl;
 	
 	ofstream fout;
-	string output = "ans_" + dest;
-	fout.open(output);
+	fout.open("data.ans");
 
 	for (size_t i = 0; i < data.size(); ++i)
 	{
